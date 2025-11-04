@@ -7,6 +7,7 @@ import {
   Search,
 } from "lucide-react";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -17,17 +18,32 @@ const Header = () => {
             <Plus />
             Cadastro
           </Button>
-          <Button className="bg-white cursor-pointer text-smart-news-gray-one text-sm">
-            <ArrowDown />
-            Contas à Pagar
+          <Button
+            className="bg-white cursor-pointer text-smart-news-gray-one text-sm"
+            asChild
+          >
+            <Link to="/pagaveis">
+              <ArrowDown />
+              Contas à Pagar
+            </Link>
           </Button>
-          <Button className="bg-white cursor-pointer text-smart-news-gray-one text-sm">
-            <ArrowUp />
-            Contas à Receber
+          <Button
+            className="bg-white cursor-pointer text-smart-news-gray-one text-sm"
+            asChild
+          >
+            <Link to="/recebiveis">
+              <ArrowUp />
+              Contas à Receber
+            </Link>
           </Button>
-          <Button className="bg-white cursor-pointer text-smart-news-gray-one text-sm">
-            <ChartLine />
-            Relatórios
+          <Button
+            className="bg-white cursor-pointer text-smart-news-gray-one text-sm"
+            asChild
+          >
+            <Link to="/">
+              <ChartLine />
+              Relatórios
+            </Link>
           </Button>
         </div>
         <div className="flex items-center gap-3">
