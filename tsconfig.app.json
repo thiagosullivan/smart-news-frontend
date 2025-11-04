@@ -27,6 +27,7 @@
     /* Deprecation handling */
     "ignoreDeprecations": "6.0",
 
+    /* Import alias */
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

@@ -1,7 +1,13 @@
-import React from "react";
+import Search from "@/components/commons/Search";
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <section className="bg-white mt-4">
+      <div className="centered-container py-4">
+        <Search />
+      </div>
+    </section>
+  );
 };
 
 export default HomePage;
