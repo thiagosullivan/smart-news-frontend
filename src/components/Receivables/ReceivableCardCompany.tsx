@@ -15,6 +15,7 @@ import {
 import { useState } from "react";
 import { useUpdateReceivable } from "@/hooks/useUpdateReceivable";
 import { useDeleteReceivable } from "@/hooks/useDeleteReceivable";
+import { toast } from "sonner";
 
 interface ReceivableCardCompanyProps {
   receivable: {
@@ -63,9 +64,21 @@ const ReceivableCardCompany = ({
       {
         onSuccess: () => {
           setIsDialogOpen(false);
+          toast.success("Item atualizado com sucesso!", {
+            style: {
+              backgroundColor: "#4CAF50",
+              color: "#fff",
+            },
+          });
         },
         onError: (error) => {
           console.error("Erro ao atualizar:", error);
+          toast.error("Erro ao atualizar!", {
+            style: {
+              backgroundColor: "#c74242",
+              color: "#fff",
+            },
+          });
         },
       }
     );
@@ -80,9 +93,21 @@ const ReceivableCardCompany = ({
       {
         onSuccess: () => {
           setIsDialogOpen(false);
+          toast.success("Deletado com sucesso!", {
+            style: {
+              backgroundColor: "#4CAF50",
+              color: "#fff",
+            },
+          });
         },
         onError: (error) => {
           console.error("Erro ao deletar:", error);
+          toast.error("Erro ao deletar", {
+            style: {
+              backgroundColor: "#c74242",
+              color: "#fff",
+            },
+          });
         },
       }
     );
@@ -233,7 +258,7 @@ const ReceivableCardCompany = ({
           </div>
           <AlertDialogDescription>
             Empresa: <br />
-            <p className="font-bold text-base">{companyName}</p>
+            <span className="font-bold text-base">{companyName}</span>
             <br />
             Descrição: {receivable.description}
             <br />

@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-const API_BASE_URL = "http://localhost:3333";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 interface CompanySelect {
   id: string;
@@ -26,7 +26,7 @@ export const useCompaniesSelect = (searchTerm: string = "") => {
     queryKey: ["companies-select", searchTerm],
     queryFn: async ({ pageParam = 1 }): Promise<CompaniesSelectResponse> => {
       // TIMEOUT
-      const delay = pageParam === 1 ? 500 : 1500;
+      const delay = pageParam === 1 ? 50 : 500;
       await new Promise((resolve) => setTimeout(resolve, delay));
 
       console.log(`Carregando página ${pageParam} (delay: ${delay}ms)`);

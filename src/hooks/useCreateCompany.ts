@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const API_BASE_URL = "http://localhost:3333";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 interface CreateCompanyData {
   name: string;
@@ -29,6 +29,9 @@ export const useCreateCompany = () => {
 
   return useMutation({
     mutationFn: async (data: CreateCompanyData) => {
+      console.log("🌐 Enviando requisição para:", `${API_BASE_URL}/companies`);
+      console.log("📦 Dados enviados:", data);
+
       const response = await fetch(`${API_BASE_URL}/companies`, {
         method: "POST",
         headers: {
@@ -37,12 +40,17 @@ export const useCreateCompany = () => {
         body: JSON.stringify(data),
       });
 
+      console.log("📡 Status da resposta:", response.status);
+
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || "Erro ao criar empresa");
+        const errorText = await response.text();
+        console.error("❌ Erro da API:", errorText);
+        throw new Error(errorText || "Erro ao criar empresa");
       }
 
-      return response.json();
+      const result = await response.json();
+      console.log("✅ Resposta da API:", result);
+      return result;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["companies"] });

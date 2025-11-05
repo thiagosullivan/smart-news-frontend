@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/Home";
 import ReceivablesPage from "./pages/Receivables";
 import PayablesPage from "./pages/Payables";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
 
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
+        <Toaster />
       </main>
     </div>
   );

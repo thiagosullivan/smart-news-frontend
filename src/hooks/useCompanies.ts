@@ -1,7 +1,7 @@
 import type { Company } from "@/types/company";
 import { useQuery } from "@tanstack/react-query";
 
-const API_BASE_URL = "http://localhost:3333";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 interface CompaniesResponse {
   companies: Company[];

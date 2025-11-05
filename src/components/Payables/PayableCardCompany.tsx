@@ -15,6 +15,7 @@ import {
 import { useState } from "react";
 import { useUpdatePayable } from "@/hooks/useUpdatePayable";
 import { useDeletePayable } from "@/hooks/useDeletePayable";
+import { toast } from "sonner";
 
 interface PayableCardCompanyProps {
   payable: {
@@ -60,9 +61,21 @@ const PayableCardCompany = ({
       {
         onSuccess: () => {
           setIsDialogOpen(false);
+          toast.success("Item atualizado!", {
+            style: {
+              backgroundColor: "#4CAF50",
+              color: "#fff",
+            },
+          });
         },
         onError: (error) => {
           console.error("Erro ao atualizar:", error);
+          toast.error("Erro ao atualizar", {
+            style: {
+              backgroundColor: "#c74242",
+              color: "#fff",
+            },
+          });
         },
       }
     );
@@ -79,9 +92,21 @@ const PayableCardCompany = ({
       {
         onSuccess: () => {
           console.log("Payable deletado com sucesso!");
+          toast.success("Deletado com sucesso!", {
+            style: {
+              backgroundColor: "#4CAF50",
+              color: "#fff",
+            },
+          });
         },
         onError: (error) => {
           console.error("Erro ao deletar:", error);
+          toast.error("Erro ao deletas!", {
+            style: {
+              backgroundColor: "#c74242",
+              color: "#fff",
+            },
+          });
         },
       }
     );
@@ -224,7 +249,7 @@ const PayableCardCompany = ({
           </div>
           <AlertDialogDescription>
             Empresa: <br />
-            <p className="font-bold text-base">{companyName}</p>
+            <span className="font-bold text-base">{companyName}</span>
             <br />
             Descrição: {payable.description}
             <br />

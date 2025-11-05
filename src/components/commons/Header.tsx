@@ -28,6 +28,7 @@ import CurrencyInput from "react-currency-input-field";
 import { useAddReceivable } from "@/hooks/useAddReceivable";
 import { useAddPayable } from "@/hooks/useAddPayable";
 import { useCompanies } from "@/hooks/useCompanies";
+import { toast } from "sonner";
 
 const Header = () => {
   const { mutate: createCompany, isPending: isCreatingCompany } =
@@ -111,11 +112,23 @@ const Header = () => {
             onSuccess: () => {
               resetForm();
               setIsDialogOpen(false);
+              toast.success("Item atualizado!", {
+                style: {
+                  backgroundColor: "#4CAF50",
+                  color: "#fff",
+                },
+              });
             },
             onError: (error) => {
               console.error(
                 error.message || "Erro ao adicionar conta a receber"
               );
+              toast.error("Item atualizado!", {
+                style: {
+                  backgroundColor: "#c74242",
+                  color: "#fff",
+                },
+              });
             },
           }
         );
@@ -127,11 +140,23 @@ const Header = () => {
           },
           {
             onSuccess: () => {
+              toast.success("Item atualizado!", {
+                style: {
+                  backgroundColor: "#4CAF50",
+                  color: "#fff",
+                },
+              });
               resetForm();
               setIsDialogOpen(false);
             },
             onError: (error) => {
               console.error(error.message || "Erro ao adicionar conta a pagar");
+              toast.error("Item atualizado!", {
+                style: {
+                  backgroundColor: "#c74242",
+                  color: "#fff",
+                },
+              });
             },
           }
         );
@@ -183,11 +208,23 @@ const Header = () => {
 
       createCompany(companyData, {
         onSuccess: (data) => {
+          toast.success("Item atualizado!", {
+            style: {
+              backgroundColor: "#4CAF50",
+              color: "#fff",
+            },
+          });
           resetForm();
           setIsDialogOpen(false);
         },
         onError: (error) => {
           console.error(error.message || "Erro ao criar empresa");
+          toast.error("Item atualizado!", {
+            style: {
+              backgroundColor: "#c74242",
+              color: "#fff",
+            },
+          });
         },
       });
     }
