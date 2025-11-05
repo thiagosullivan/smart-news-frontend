@@ -7,8 +7,6 @@ const PayablesPage = () => {
   const { data: companies } = useCompanies();
   const [selectedCompany, setSelectedCompany] = useState("");
 
-  console.log(companies, "PAYABLES PAGE");
-
   if (!companies) {
     return (
       <section className="bg-white mt-4">

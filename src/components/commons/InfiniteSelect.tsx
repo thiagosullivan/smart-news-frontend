@@ -53,7 +53,6 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
     observerRef.current = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && isOpen) {
-          console.log("Carregando mais empresas...");
           fetchNextPage();
         }
       },

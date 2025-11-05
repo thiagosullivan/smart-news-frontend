@@ -34,7 +34,6 @@ const ReceivableCardCompany = ({
   companyName,
   companyId,
 }: ReceivableCardCompanyProps) => {
-  console.log(receivable, companyName, "CARD COMPANY");
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -67,7 +66,6 @@ const ReceivableCardCompany = ({
         },
         onError: (error) => {
           console.error("Erro ao atualizar:", error);
-          alert("Erro ao salvar alterações: " + error.message);
         },
       }
     );
@@ -81,12 +79,10 @@ const ReceivableCardCompany = ({
       },
       {
         onSuccess: () => {
-          console.log("Receivable deletado com sucesso!");
           setIsDialogOpen(false);
         },
         onError: (error) => {
           console.error("Erro ao deletar:", error);
-          alert("Erro ao deletar conta: " + error.message);
         },
       }
     );

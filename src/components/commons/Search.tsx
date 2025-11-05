@@ -11,12 +11,14 @@ interface SearchComponentProps {
   onClear: () => void;
   currentFilters: SearchFilters;
   dateBounds?: { min: string; max: string };
+  onGeneratePdf?: () => void;
 }
 
 const SearchComponent = ({
   onSearch,
   onClear,
   currentFilters,
+  onGeneratePdf,
 }: SearchComponentProps) => {
   const { data: companies } = useCompanies();
 
@@ -53,6 +55,12 @@ const SearchComponent = ({
     setCostCenter("");
     setEmitidos(false);
     onClear();
+  };
+
+  const handleGeneratePdf = () => {
+    if (onGeneratePdf) {
+      onGeneratePdf();
+    }
   };
 
   return (
@@ -137,6 +145,7 @@ const SearchComponent = ({
         <div className="flex items-center gap-2.5">
           <Button
             type="button"
+            onClick={handleGeneratePdf}
             className="bg-smart-news-purple-two hover:bg-smart-news-purple-two/80 text-smart-news-purple-one uppercase text-xs font-bold w-20 h-[45px] cursor-pointer"
           >
             <FileText className="scale-90" />

@@ -34,7 +34,6 @@ const PayableCardCompany = ({
   companyName,
   companyId,
 }: PayableCardCompanyProps) => {
-  console.log(payable, companyName, "CARD COMPANY");
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -64,7 +63,6 @@ const PayableCardCompany = ({
         },
         onError: (error) => {
           console.error("Erro ao atualizar:", error);
-          alert("Erro ao salvar alterações");
         },
       }
     );
@@ -84,7 +82,6 @@ const PayableCardCompany = ({
         },
         onError: (error) => {
           console.error("Erro ao deletar:", error);
-          alert("Erro ao deletar conta");
         },
       }
     );

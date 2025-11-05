@@ -85,7 +85,7 @@ const Header = () => {
 
   const handleSubmit = () => {
     if (!formData.companyName.trim()) {
-      alert("Selecione ou digite o nome da empresa");
+      console.error("Selecione ou digite o nome da empresa");
       return;
     }
 
@@ -109,12 +109,13 @@ const Header = () => {
           },
           {
             onSuccess: () => {
-              console.log("✅ Conta a receber adicionada com sucesso");
               resetForm();
               setIsDialogOpen(false);
             },
             onError: (error) => {
-              alert(error.message || "Erro ao adicionar conta a receber");
+              console.error(
+                error.message || "Erro ao adicionar conta a receber"
+              );
             },
           }
         );
@@ -126,12 +127,11 @@ const Header = () => {
           },
           {
             onSuccess: () => {
-              console.log("✅ Conta a pagar adicionada com sucesso");
               resetForm();
               setIsDialogOpen(false);
             },
             onError: (error) => {
-              alert(error.message || "Erro ao adicionar conta a pagar");
+              console.error(error.message || "Erro ao adicionar conta a pagar");
             },
           }
         );
@@ -183,13 +183,11 @@ const Header = () => {
 
       createCompany(companyData, {
         onSuccess: (data) => {
-          console.log("✅ Empresa criada com sucesso:", data);
           resetForm();
           setIsDialogOpen(false);
         },
         onError: (error) => {
-          console.error("❌ Erro ao criar empresa:", error);
-          alert(error.message || "Erro ao criar empresa");
+          console.error(error.message || "Erro ao criar empresa");
         },
       });
     }
