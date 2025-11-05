@@ -9,6 +9,7 @@ import CardsAccounts from "./CardsAccounts";
 import { LoaderCircle } from "lucide-react";
 import FinancialLineChart from "./LineCharts";
 import type { SearchFilters } from "@/types/filters";
+import CompaniesTable from "./CompaniesTable";
 
 interface AccountsProps {
   filters: SearchFilters;
@@ -75,8 +76,13 @@ const Accounts = ({ filters }: AccountsProps) => {
           amountToReceive={totalUpcomingReceivable}
         />
       </div>
-      <div className="my-4">
-        <FinancialLineChart companies={filteredCompanies} filters={filters} />
+      <div className="my-4 flex items-center justify-between gap-2">
+        <div className="my-4 max-w-[935px] w-full">
+          <FinancialLineChart companies={filteredCompanies} filters={filters} />
+        </div>
+        <div>
+          <CompaniesTable companies={companies} />
+        </div>
       </div>
     </section>
   );
