@@ -29,9 +29,9 @@ const CardsAccounts = ({
   const config = cardConfig[type];
 
   return (
-    <div className="border border-smart-news-gray-three rounded-md max-w-[300px] w-full h-[100px] overflow-hidden">
+    <div className="border border-smart-news-gray-three rounded-md max-w-[300px] w-full overflow-hidden">
       <div
-        className={`border-b-6 p-4 h-full`}
+        className={`border-b-6 p-4 min-h-[115px] h-full`}
         style={{ borderBottomColor: config.borderColor }}
       >
         <div className="flex items-center justify-between mb-4">

@@ -58,9 +58,9 @@ const SearchComponent = ({
     <div className="border border-smart-news-gray-three p-4 rounded-md">
       <form
         onSubmit={handleSubmit}
-        className="flex items-center justify-between"
+        className="flex items-center justify-between gap-x-2"
       >
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2.5 ml-2">
           <Button
             type="button"
             onClick={handleClear}

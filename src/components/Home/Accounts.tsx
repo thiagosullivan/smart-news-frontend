@@ -59,7 +59,7 @@ const Accounts = ({ filters }: AccountsProps) => {
 
   return (
     <section className="my-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between gap-1.5">
         <CardsAmount type="receivable" amount={totalSummary.totalReceivable} />
         <CardsAmount type="payable" amount={totalSummary.totalPayable} />
         <CardsAmount type="balance" amount={totalSummary.balance} />
@@ -76,11 +76,11 @@ const Accounts = ({ filters }: AccountsProps) => {
           amountToReceive={totalUpcomingReceivable}
         />
       </div>
-      <div className="my-4 flex items-center justify-between gap-2">
-        <div className="my-4 max-w-[935px] w-full">
+      <div className="my-5 flex items-center justify-between gap-5 min-h-[500px]">
+        <div className="max-w-[935px] w-full">
           <FinancialLineChart companies={filteredCompanies} filters={filters} />
         </div>
-        <div>
+        <div className="w-full max-w-[620px]">
           <CompaniesTable companies={companies} />
         </div>
       </div>

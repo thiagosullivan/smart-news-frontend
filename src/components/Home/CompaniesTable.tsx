@@ -25,7 +25,7 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
 
   return (
     <div className="rounded-md overflow-hidden border border-gray-300">
-      <table>
+      <table className="w-full max-w-[620px] min-h-[500px]">
         <thead>
           <tr className="bg-gray-300 text-left text-xs">
             <th className="px-4 py-3 font-medium">Nome</th>
