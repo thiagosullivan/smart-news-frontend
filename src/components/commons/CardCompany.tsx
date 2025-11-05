@@ -1,6 +1,6 @@
 import { formatToBRL } from "@/utils/formatToBRL";
 import { Button } from "../ui/button";
-import { SquarePen, Trash2 } from "lucide-react";
+import { Loader2, SquarePen, Trash2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,6 +14,7 @@ import {
 } from "../ui/alert-dialog";
 import { useState } from "react";
 import { useUpdatePayable } from "@/hooks/useUpdatePayable";
+import { useDeletePayable } from "@/hooks/useDeletePayable";
 
 interface CardCompanyProps {
   payable: {
@@ -30,7 +31,7 @@ interface CardCompanyProps {
 
 const CardCompany = ({ payable, companyName, companyId }: CardCompanyProps) => {
   console.log(payable, companyName, "CARD COMPANY");
-
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
     status: payable.status,
@@ -60,6 +61,27 @@ const CardCompany = ({ payable, companyName, companyId }: CardCompanyProps) => {
         onError: (error) => {
           console.error("Erro ao atualizar:", error);
           alert("Erro ao salvar alterações");
+        },
+      }
+    );
+  };
+
+  const { mutate: deletePayable, isPending: isDeleting } = useDeletePayable();
+
+  const handleDelete = () => {
+    deletePayable(
+      {
+        companyId,
+        payableId: payable.id,
+      },
+      {
+        onSuccess: () => {
+          console.log("Payable deletado com sucesso!");
+          // O revalidate automático vai atualizar a UI
+        },
+        onError: (error) => {
+          console.error("Erro ao deletar:", error);
+          alert("Erro ao deletar conta");
         },
       }
     );
@@ -164,6 +186,41 @@ const CardCompany = ({ payable, companyName, companyId }: CardCompanyProps) => {
         <AlertDialogHeader>
           <div className="mb-4 flex items-center justify-between">
             <AlertDialogTitle>Editar informações</AlertDialogTitle>
+
+            {!showDeleteConfirm ? (
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={() => setShowDeleteConfirm(true)}
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            ) : (
+              <div className="flex gap-2">
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={handleDelete}
+                  disabled={isDeleting}
+                >
+                  {isDeleting ? (
+                    <div>
+                      <Loader2 className="animate-spin" />
+                      <p>Deletando...</p>
+                    </div>
+                  ) : (
+                    "Confirmar"
+                  )}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowDeleteConfirm(false)}
+                >
+                  Cancelar
+                </Button>
+              </div>
+            )}
           </div>
           <AlertDialogDescription>
             Empresa: <br />
@@ -222,7 +279,14 @@ const CardCompany = ({ payable, companyName, companyId }: CardCompanyProps) => {
             onClick={handleSave}
             disabled={isPending}
           >
-            {isPending ? "Salvando..." : "Salvar Alterações"}
+            {isPending ? (
+              <div>
+                <Loader2 className="animate-spin" />
+                <p>Salvando...</p>
+              </div>
+            ) : (
+              "Salvar Alterações"
+            )}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
