@@ -4,6 +4,7 @@ import { Label } from "../ui/label";
 import { useState } from "react";
 import type { SearchFilters } from "@/types/filters";
 import { useCompanies } from "@/hooks/useCompanies";
+import InfiniteSelect from "./InfiniteSelect";
 
 interface SearchComponentProps {
   onSearch: (filters: SearchFilters) => void;
@@ -69,7 +70,7 @@ const SearchComponent = ({
             <ChevronLeft className="scale-125" />
           </Button>
 
-          {/* Centro de Custo */}
+          {/* Centro de Custo
           <div className="flex flex-col w-72">
             <label
               htmlFor="cost"
@@ -93,6 +94,20 @@ const SearchComponent = ({
                 );
               })}
             </select>
+          </div> */}
+          {/* Centro de Custo com Infinite Scroll */}
+          <div className="flex flex-col w-72">
+            <label
+              htmlFor="cost"
+              className="text-xs mb-2.5 text-smart-news-gray-one"
+            >
+              Centro de Custo:
+            </label>
+            <InfiniteSelect
+              value={costCenter}
+              onChange={setCostCenter}
+              placeholder="Todas as empresas"
+            />
           </div>
 
           {/* Data Inicial */}
