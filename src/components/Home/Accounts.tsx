@@ -43,19 +43,19 @@ const Accounts = ({ filters }: AccountsProps) => {
   const { totalUpcomingReceivable, totalUpcomingPayable } =
     calculateTotalUpcomingAmounts(filteredCompanies);
 
-  console.log(totalSummary, "TOTAL SUMARY");
-  console.log(
-    "CONTAS VENCIDAS - A Receber:",
-    totalOverdueReceivable,
-    "A Pagar:",
-    totalOverduePayable
-  );
-  console.log(
-    "CONTAS À VENCER - A Receber:",
-    totalUpcomingReceivable,
-    "A Pagar:",
-    totalUpcomingPayable
-  );
+  // console.log(totalSummary, "TOTAL SUMARY");
+  // console.log(
+  //   "CONTAS VENCIDAS - A Receber:",
+  //   totalOverdueReceivable,
+  //   "A Pagar:",
+  //   totalOverduePayable
+  // );
+  // console.log(
+  //   "CONTAS À VENCER - A Receber:",
+  //   totalUpcomingReceivable,
+  //   "A Pagar:",
+  //   totalUpcomingPayable
+  // );
 
   return (
     <section className="my-4">
@@ -76,7 +76,7 @@ const Accounts = ({ filters }: AccountsProps) => {
           amountToReceive={totalUpcomingReceivable}
         />
       </div>
-      <div className="my-5 flex items-center justify-between gap-5 min-h-[500px]">
+      <div className="my-5 flex items-start justify-between gap-5 min-h-[500px]">
         <div className="max-w-[935px] w-full">
           <FinancialLineChart companies={filteredCompanies} filters={filters} />
         </div>

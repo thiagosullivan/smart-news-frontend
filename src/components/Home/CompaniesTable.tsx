@@ -7,7 +7,7 @@ interface CompaniesTableProps {
 }
 
 const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
-  console.log(companies, "COMP TAB");
+  // console.log(companies, "COMP TAB");
   // Calcula totais gerais
   const totalReceivable = companies.reduce(
     (sum, company) =>
@@ -24,8 +24,8 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
   const totalResult = totalReceivable - totalPayable;
 
   return (
-    <div className="rounded-md overflow-hidden border border-gray-300">
-      <table className="w-full max-w-[620px] min-h-[500px]">
+    <div className="rounded-md overflow-hidden border border-gray-300 max-h-[500px] h-full overflow-y-scroll">
+      <table className="w-full max-w-[620px]">
         <thead>
           <tr className="bg-gray-300 text-left text-xs">
             <th className="px-4 py-3 font-medium">Nome</th>
@@ -34,7 +34,7 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
             <th className="font-medium">Resultado</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="h-[500px]">
           {companies.map((company) => {
             const companyReceivable = company.accountsReceivable.reduce(
               (sum, ar) => sum + ar.amount,
@@ -46,7 +46,7 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
             );
             const companyResult = companyReceivable - companyPayable;
 
-            console.log(companyResult, "RESULT TABLE");
+            // console.log(companyResult, "RESULT TABLE");
 
             return (
               <tr key={company.id} className="text-xs uppercase">
@@ -60,7 +60,7 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
                   {formatToBRL(companyReceivable)}
                 </td>
                 <td className="border-b border-gray-300 py-5 pr-1.5 max-w-[225px]">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between gap-2">
                     {formatToBRL(companyResult)}
                     {companyResult < 0 ? (
                       <img
