@@ -7,8 +7,14 @@ import {
 import CardsAmount from "./CardsAmount";
 import CardsAccounts from "./CardsAccounts";
 import { LoaderCircle } from "lucide-react";
+import FinancialLineChart from "./LineCharts";
+import type { SearchFilters } from "@/types/filters";
 
-const Accounts = () => {
+interface AccountsProps {
+  filters: SearchFilters;
+}
+
+const Accounts = ({ filters }: AccountsProps) => {
   const { data: companies, isPending, error } = useCompanies();
 
   if (isPending)
@@ -22,12 +28,34 @@ const Accounts = () => {
 
   if (companies?.length === 0) return <div>Nenhuma empresa encontrada</div>;
 
-  const totalSummary = calculateTotalAmountAllCompanies(companies);
+  const filteredCompanies = companies.filter((company) => {
+    if (!filters.costCenter || filters.costCenter === "") {
+      return true;
+    }
+
+    return company.name === filters.costCenter;
+  });
+
+  const totalSummary = calculateTotalAmountAllCompanies(filteredCompanies);
   const { totalOverdueReceivable, totalOverduePayable } =
-    calculateTotalOverdueAmounts(companies);
+    calculateTotalOverdueAmounts(filteredCompanies);
   const { totalUpcomingReceivable, totalUpcomingPayable } =
-    calculateTotalUpcomingAmounts(companies);
-  console.log(companies, "COMPANIES");
+    calculateTotalUpcomingAmounts(filteredCompanies);
+
+  console.log(totalSummary, "TOTAL SUMARY");
+  console.log(
+    "CONTAS VENCIDAS - A Receber:",
+    totalOverdueReceivable,
+    "A Pagar:",
+    totalOverduePayable
+  );
+  console.log(
+    "CONTAS À VENCER - A Receber:",
+    totalUpcomingReceivable,
+    "A Pagar:",
+    totalUpcomingPayable
+  );
+
   return (
     <section className="my-4">
       <div className="flex items-center justify-between">
@@ -36,15 +64,19 @@ const Accounts = () => {
         <CardsAmount type="balance" amount={totalSummary.balance} />
 
         <CardsAccounts
-          type="finalAccounts"
+          type="overdueAccounts"
           amountToPay={totalOverduePayable}
           amountToReceive={totalOverdueReceivable}
         />
+
         <CardsAccounts
-          type="endedAccounts"
+          type="upcomingAccounts"
           amountToPay={totalUpcomingPayable}
           amountToReceive={totalUpcomingReceivable}
         />
+      </div>
+      <div className="my-4">
+        <FinancialLineChart companies={filteredCompanies} filters={filters} />
       </div>
     </section>
   );
