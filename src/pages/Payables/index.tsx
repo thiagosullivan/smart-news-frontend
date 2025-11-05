@@ -1,4 +1,4 @@
-import CardCompany from "@/components/commons/CardCompany";
+import CardCompany from "@/components/Payables/PayableCardCompany";
 import { useCompanies } from "@/hooks/useCompanies";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";

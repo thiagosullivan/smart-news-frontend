@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useUpdatePayable } from "@/hooks/useUpdatePayable";
 import { useDeletePayable } from "@/hooks/useDeletePayable";
 
-interface CardCompanyProps {
+interface PayableCardCompanyProps {
   payable: {
     id: string;
     description: string;
@@ -29,7 +29,11 @@ interface CardCompanyProps {
   companyId: string;
 }
 
-const CardCompany = ({ payable, companyName, companyId }: CardCompanyProps) => {
+const PayableCardCompany = ({
+  payable,
+  companyName,
+  companyId,
+}: PayableCardCompanyProps) => {
   console.log(payable, companyName, "CARD COMPANY");
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -77,7 +81,6 @@ const CardCompany = ({ payable, companyName, companyId }: CardCompanyProps) => {
       {
         onSuccess: () => {
           console.log("Payable deletado com sucesso!");
-          // O revalidate automático vai atualizar a UI
         },
         onError: (error) => {
           console.error("Erro ao deletar:", error);
@@ -294,4 +297,4 @@ const CardCompany = ({ payable, companyName, companyId }: CardCompanyProps) => {
   );
 };
 
-export default CardCompany;
+export default PayableCardCompany;
