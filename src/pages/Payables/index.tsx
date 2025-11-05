@@ -55,6 +55,7 @@ const PayablesPage = () => {
                     key={payable.id}
                     payable={payable}
                     companyName={company.name}
+                    companyId={company.id}
                   />
                 ))
               )}
