@@ -1,4 +1,3 @@
-// components/commons/InfiniteSelect.tsx
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 import { LoaderCircle } from "lucide-react";
@@ -7,16 +6,18 @@ interface InfiniteSelectProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  returnId?: boolean;
 }
 
 const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
   value,
   onChange,
   placeholder = "Selecione...",
+  returnId = false,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [hasOpened, setHasOpened] = useState(false); // Nova state para controlar abertura
+  const [hasOpened, setHasOpened] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const observerRef = useRef<IntersectionObserver>();
@@ -30,7 +31,6 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
     isLoading,
   } = useCompaniesSelect(searchTerm);
 
-  // Fechar dropdown ao clicar fora - CORREÇÃO: mais específico
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -46,12 +46,10 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // CORREÇÃO: Intersection Observer melhorado
   useEffect(() => {
     if (!sentinelRef.current || !hasNextPage || isFetchingNextPage || !isOpen)
       return;
 
-    // Só cria o observer se o dropdown estiver aberto
     observerRef.current = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && isOpen) {
@@ -61,7 +59,7 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
       },
       {
         root: listRef.current,
-        rootMargin: "50px", // Carrega quando estiver a 50px do final
+        rootMargin: "50px",
         threshold: 0.1,
       }
     );
@@ -81,15 +79,15 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
     companies.length,
   ]);
 
-  // CORREÇÃO: Controlar quando o dropdown realmente abriu
   useEffect(() => {
     if (isOpen && !hasOpened) {
       setHasOpened(true);
     }
   }, [isOpen, hasOpened]);
 
-  const handleSelect = (companyName: string) => {
-    onChange(companyName);
+  const handleSelect = (companyId: string, companyName: string) => {
+    const returnValue = returnId ? companyId : companyName;
+    onChange(returnValue);
     setIsOpen(false);
     setSearchTerm("");
   };
@@ -100,7 +98,20 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
     }
   };
 
-  const selectedCompany = companies.find((company) => company.name === value);
+  const getDisplayValue = () => {
+    if (isOpen) {
+      return searchTerm;
+    }
+
+    if (returnId) {
+      const selectedCompany = companies.find((company) => company.id === value);
+      return selectedCompany?.name || "";
+    } else {
+      return value;
+    }
+  };
+
+  const displayValue = getDisplayValue();
 
   return (
     <div ref={selectRef} className="relative w-full">
@@ -111,7 +122,7 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
         <input
           type="text"
           className="w-full outline-none bg-transparent cursor-pointer"
-          value={isOpen ? searchTerm : selectedCompany?.name || ""}
+          value={displayValue}
           onChange={(e) => {
             setSearchTerm(e.target.value);
             if (!isOpen) setIsOpen(true);
@@ -147,11 +158,11 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
                   <li
                     key={company.id}
                     className={`px-3 py-2 text-sm cursor-pointer hover:bg-gray-100 ${
-                      value === company.name
+                      (returnId ? value === company.id : value === company.name)
                         ? "bg-smart-news-purple-two text-smart-news-purple-one"
                         : ""
                     }`}
-                    onClick={() => handleSelect(company.name)}
+                    onClick={() => handleSelect(company.id, company.name)}
                   >
                     {company.name}
                   </li>

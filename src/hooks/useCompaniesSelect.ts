@@ -1,4 +1,3 @@
-// hooks/useCompaniesSelect.ts
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 const API_BASE_URL = "http://localhost:3333";

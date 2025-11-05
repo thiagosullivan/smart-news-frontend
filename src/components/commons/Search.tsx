@@ -70,32 +70,6 @@ const SearchComponent = ({
             <ChevronLeft className="scale-125" />
           </Button>
 
-          {/* Centro de Custo
-          <div className="flex flex-col w-72">
-            <label
-              htmlFor="cost"
-              className="text-xs mb-2.5 text-smart-news-gray-one"
-            >
-              Centro de Custo:
-            </label>
-            <select
-              name="cost"
-              id="cost"
-              value={costCenter}
-              onChange={(e) => setCostCenter(e.target.value)}
-              className="border border-smart-news-gray-three rounded-md h-9 px-2.5"
-            >
-              <option value="">Todas</option>
-              {companies?.map((company) => {
-                return (
-                  <option value={company.name} key={company.id}>
-                    {company.name}
-                  </option>
-                );
-              })}
-            </select>
-          </div> */}
-          {/* Centro de Custo com Infinite Scroll */}
           <div className="flex flex-col w-72">
             <label
               htmlFor="cost"

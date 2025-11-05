@@ -51,12 +51,11 @@ const ReceivableCardCompany = ({
     return new Date(dateString).toLocaleDateString("pt-BR");
   };
 
-  // ✅ CORRETO - use a mutate function, não o hook
   const handleSave = () => {
     updateReceivable(
       {
         companyId,
-        receivableId: receivable.id, // ✅ CORRETO: receivable.id
+        receivableId: receivable.id,
         data: {
           status: formData.status,
           receivedDate: formData.receivedDate || undefined,
@@ -74,12 +73,11 @@ const ReceivableCardCompany = ({
     );
   };
 
-  // ✅ CORRETO - use a mutate function, não o hook
   const handleDelete = () => {
     deleteReceivable(
       {
         companyId,
-        receivableId: receivable.id, // ✅ CORRETO: receivable.id
+        receivableId: receivable.id,
       },
       {
         onSuccess: () => {
@@ -180,7 +178,7 @@ const ReceivableCardCompany = ({
                 }`}
               >
                 {receivable.status === "PAID"
-                  ? "RECEBIDO" // Mudei de "PAGO" para "RECEBIDO"
+                  ? "RECEBIDO"
                   : receivable.status === "OVERDUE"
                   ? "VENCIDO"
                   : "PENDENTE"}

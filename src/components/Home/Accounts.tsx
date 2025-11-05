@@ -43,20 +43,6 @@ const Accounts = ({ filters }: AccountsProps) => {
   const { totalUpcomingReceivable, totalUpcomingPayable } =
     calculateTotalUpcomingAmounts(filteredCompanies);
 
-  // console.log(totalSummary, "TOTAL SUMARY");
-  // console.log(
-  //   "CONTAS VENCIDAS - A Receber:",
-  //   totalOverdueReceivable,
-  //   "A Pagar:",
-  //   totalOverduePayable
-  // );
-  // console.log(
-  //   "CONTAS À VENCER - A Receber:",
-  //   totalUpcomingReceivable,
-  //   "A Pagar:",
-  //   totalUpcomingPayable
-  // );
-
   return (
     <section className="my-4">
       <div className="flex items-start justify-between gap-1.5">

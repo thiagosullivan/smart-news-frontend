@@ -11,12 +11,10 @@ const HomePage = () => {
   });
 
   const handleSearch = (newFilters: SearchFilters) => {
-    // console.log("Filtrando com:", newFilters);
     setFilters(newFilters);
   };
 
   const handleClearFilters = () => {
-    // console.log("Limpando filtros");
     setFilters({
       dateRange: null,
       costCenter: null,

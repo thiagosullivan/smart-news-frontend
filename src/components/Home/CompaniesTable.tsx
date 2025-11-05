@@ -7,8 +7,6 @@ interface CompaniesTableProps {
 }
 
 const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
-  // console.log(companies, "COMP TAB");
-  // Calcula totais gerais
   const totalReceivable = companies.reduce(
     (sum, company) =>
       sum + company.accountsReceivable.reduce((acc, ar) => acc + ar.amount, 0),
@@ -45,8 +43,6 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
               0
             );
             const companyResult = companyReceivable - companyPayable;
-
-            // console.log(companyResult, "RESULT TABLE");
 
             return (
               <tr key={company.id} className="text-xs uppercase">
