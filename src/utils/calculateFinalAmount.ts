@@ -11,23 +11,21 @@ export function calculateFinalAmountSingleCompany(
     (sum, ap) => sum + ap.amount,
     0
   );
-  const overdueReceivable = company.accountsReceivable
-    .filter((ar) => ar.status === "OVERDUE")
-    .reduce((sum, ar) => sum + ar.amount, 0);
-  const pendingReceivable = company.accountsReceivable
-    .filter((ar) => ar.status === "PENDING")
-    .reduce((sum, ar) => sum + ar.amount, 0);
+
+  const { overdueReceivable, overduePayable } =
+    calculateOverdueAmounts(company);
+  const { upcomingReceivable, upcomingPayable } =
+    calculateUpcomingAmounts(company);
 
   return {
     totalReceivable,
     totalPayable,
     balance: totalReceivable - totalPayable,
     overdueReceivable,
-    pendingReceivable,
+    pendingReceivable: upcomingReceivable,
   };
 }
 
-// No seu arquivo de tipos ou utils
 export function calculateTotalAmountAllCompanies(
   companies: Company[]
 ): FinancialSummary {
@@ -43,74 +41,70 @@ export function calculateTotalAmountAllCompanies(
     0
   );
 
-  const overdueReceivable = companies.reduce(
-    (sum, company) =>
-      sum +
-      company.accountsReceivable
-        .filter((ar) => ar.status === "OVERDUE")
-        .reduce((acc, ar) => acc + ar.amount, 0),
-    0
-  );
-
-  const pendingReceivable = companies.reduce(
-    (sum, company) =>
-      sum +
-      company.accountsReceivable
-        .filter((ar) => ar.status === "PENDING")
-        .reduce((acc, ar) => acc + ar.amount, 0),
-    0
-  );
+  const { totalOverdueReceivable, totalOverduePayable } =
+    calculateTotalOverdueAmounts(companies);
+  const { totalUpcomingReceivable, totalUpcomingPayable } =
+    calculateTotalUpcomingAmounts(companies);
 
   return {
     totalReceivable,
     totalPayable,
     balance: totalReceivable - totalPayable,
-    overdueReceivable,
-    pendingReceivable,
+    overdueReceivable: totalOverdueReceivable,
+    pendingReceivable: totalUpcomingReceivable,
   };
 }
 
 export function calculateOverdueAmounts(company: Company) {
   const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   const overdueReceivable = company.accountsReceivable
-    .filter((ar) => ar.status === "OVERDUE" || new Date(ar.dueDate) < today)
+    .filter((ar) => {
+      const dueDate = new Date(ar.dueDate);
+      dueDate.setHours(0, 0, 0, 0);
+      return dueDate < today;
+    })
     .reduce((sum, ar) => sum + ar.amount, 0);
 
   const overduePayable = company.accountsPayable
-    .filter((ap) => ap.status === "OVERDUE" || new Date(ap.dueDate) < today)
+    .filter((ap) => {
+      const dueDate = new Date(ap.dueDate);
+      dueDate.setHours(0, 0, 0, 0);
+      return dueDate < today;
+    })
     .reduce((sum, ap) => sum + ap.amount, 0);
 
-  return { overdueReceivable, overduePayable };
+  return {
+    overdueReceivable,
+    overduePayable,
+  };
 }
 
 export function calculateUpcomingAmounts(company: Company) {
   const today = new Date();
-  const next30Days = new Date();
-  next30Days.setDate(today.getDate() + 30);
+  today.setHours(0, 0, 0, 0);
 
   const upcomingReceivable = company.accountsReceivable
-    .filter(
-      (ar) =>
-        ar.status === "PENDING" &&
-        new Date(ar.dueDate) > today &&
-        new Date(ar.dueDate) <= next30Days
-    )
+    .filter((ar) => {
+      const dueDate = new Date(ar.dueDate);
+      return dueDate >= today;
+    })
     .reduce((sum, ar) => sum + ar.amount, 0);
 
   const upcomingPayable = company.accountsPayable
-    .filter(
-      (ap) =>
-        ap.status === "PENDING" &&
-        new Date(ap.dueDate) > today &&
-        new Date(ap.dueDate) <= next30Days
-    )
+    .filter((ap) => {
+      const dueDate = new Date(ap.dueDate);
+      return dueDate >= today;
+    })
     .reduce((sum, ap) => sum + ap.amount, 0);
 
-  return { upcomingReceivable, upcomingPayable };
+  return {
+    upcomingReceivable,
+    upcomingPayable,
+  };
 }
 
-// Para o total de todas as empresas
 export function calculateTotalOverdueAmounts(companies: Company[]) {
   let totalOverdueReceivable = 0;
   let totalOverduePayable = 0;
@@ -122,7 +116,10 @@ export function calculateTotalOverdueAmounts(companies: Company[]) {
     totalOverduePayable += overduePayable;
   });
 
-  return { totalOverdueReceivable, totalOverduePayable };
+  return {
+    totalOverdueReceivable,
+    totalOverduePayable,
+  };
 }
 
 export function calculateTotalUpcomingAmounts(companies: Company[]) {
@@ -136,5 +133,32 @@ export function calculateTotalUpcomingAmounts(companies: Company[]) {
     totalUpcomingPayable += upcomingPayable;
   });
 
-  return { totalUpcomingReceivable, totalUpcomingPayable };
+  return {
+    totalUpcomingReceivable,
+    totalUpcomingPayable,
+  };
+}
+
+export function calculateAllUpcomingAmounts(company: Company) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const allUpcomingReceivable = company.accountsReceivable
+    .filter((ar) => {
+      const dueDate = new Date(ar.dueDate);
+      return dueDate >= today;
+    })
+    .reduce((sum, ar) => sum + ar.amount, 0);
+
+  const allUpcomingPayable = company.accountsPayable
+    .filter((ap) => {
+      const dueDate = new Date(ap.dueDate);
+      return dueDate >= today;
+    })
+    .reduce((sum, ap) => sum + ap.amount, 0);
+
+  return {
+    allUpcomingReceivable,
+    allUpcomingPayable,
+  };
 }
