@@ -45,28 +45,26 @@ const Accounts = ({ filters }: AccountsProps) => {
 
   return (
     <section className="my-4">
-      <div className="flex items-start justify-between gap-1.5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1.5 w-full">
         <CardsAmount type="receivable" amount={totalSummary.totalReceivable} />
         <CardsAmount type="payable" amount={totalSummary.totalPayable} />
         <CardsAmount type="balance" amount={totalSummary.balance} />
-
         <CardsAccounts
           type="overdueAccounts"
           amountToPay={totalOverduePayable}
           amountToReceive={totalOverdueReceivable}
         />
-
         <CardsAccounts
           type="upcomingAccounts"
           amountToPay={totalUpcomingPayable}
           amountToReceive={totalUpcomingReceivable}
         />
       </div>
-      <div className="my-5 flex items-start justify-between gap-5 min-h-[500px]">
+      <div className="my-5 flex flex-col lg:flex-row items-start justify-between gap-5 min-h-[500px]">
         <div className="max-w-[935px] w-full">
           <FinancialLineChart companies={filteredCompanies} filters={filters} />
         </div>
-        <div className="w-full max-w-[620px]">
+        <div className="w-full max-w-none lg:max-w-[620px]">
           <CompaniesTable companies={companies} />
         </div>
       </div>

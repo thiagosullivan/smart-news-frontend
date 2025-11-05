@@ -1,0 +1,191 @@
+import React, { useState } from "react";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
+import { ChevronLeft, FileText, Menu, Search } from "lucide-react";
+import { Button } from "../ui/button";
+import { Label } from "../ui/label";
+import InfiniteSelect from "./InfiniteSelect";
+import { useCompanies } from "@/hooks/useCompanies";
+import type { SearchFilters } from "@/types/filters";
+
+interface SearchComponentProps {
+  onSearch: (filters: SearchFilters) => void;
+  onClear: () => void;
+  currentFilters: SearchFilters;
+  dateBounds?: { min: string; max: string };
+  onGeneratePdf?: () => void;
+}
+
+const SearchMobile = ({
+  onSearch,
+  onClear,
+  currentFilters,
+  onGeneratePdf,
+}: SearchComponentProps) => {
+  const { data: companies } = useCompanies();
+
+  const [initialDate, setInitialDate] = useState<string>(
+    currentFilters.dateRange?.start || ""
+  );
+  const [finalDate, setFinalDate] = useState<string>(
+    currentFilters.dateRange?.end || ""
+  );
+  const [costCenter, setCostCenter] = useState(currentFilters.costCenter || "");
+  const [emitidos, setEmitidos] = useState(currentFilters.emitidos);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const filters: SearchFilters = {
+      dateRange:
+        initialDate && finalDate
+          ? {
+              start: initialDate,
+              end: finalDate,
+            }
+          : null,
+      costCenter: costCenter || null,
+      emitidos,
+    };
+
+    onSearch(filters);
+  };
+
+  const handleClear = () => {
+    setInitialDate("");
+    setFinalDate("");
+    setCostCenter("");
+    setEmitidos(false);
+    onClear();
+  };
+
+  const handleGeneratePdf = () => {
+    if (onGeneratePdf) {
+      onGeneratePdf();
+    }
+  };
+
+  return (
+    <div>
+      <Sheet>
+        <SheetTrigger>
+          <Menu className="text-smart-news-purple-one" />
+        </SheetTrigger>
+        <SheetContent side="left">
+          <SheetHeader>
+            <SheetDescription>
+              <div className="border border-smart-news-gray-three p-4 rounded-md mt-10">
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col items-start justify-between gap-x-2"
+                >
+                  <div className="flex flex-col items-start gap-2.5 ml-2 w-full">
+                    <Button
+                      type="button"
+                      onClick={handleClear}
+                      className="w-[45px] h-[35px] bg-smart-news-purple-two text-smart-news-purple-one hover:bg-purple-300 cursor-pointer mb-3"
+                    >
+                      <ChevronLeft className="scale-125" />
+                    </Button>
+
+                    <div className="flex flex-col w-full 1xl:w-72">
+                      <label
+                        htmlFor="cost"
+                        className="text-xs mb-2.5 text-smart-news-gray-one"
+                      >
+                        Centro de Custo:
+                      </label>
+                      <InfiniteSelect
+                        value={costCenter}
+                        onChange={setCostCenter}
+                        placeholder="Todas as empresas"
+                      />
+                    </div>
+
+                    {/* Data Inicial */}
+                    <div className="flex flex-col gap-3 w-full">
+                      <Label
+                        htmlFor="initialDate"
+                        className="px-1 text-smart-news-gray-one text-xs"
+                      >
+                        Data inicial:
+                      </Label>
+                      <input
+                        type="date"
+                        id="initialDate"
+                        value={initialDate}
+                        placeholder="Data inicial"
+                        className="border p-2 rounded text-sm"
+                        onChange={(e) => setInitialDate(e.target.value)}
+                      />
+                    </div>
+
+                    {/* Data Final */}
+                    <div className="flex flex-col gap-3 w-full">
+                      <Label
+                        htmlFor="finalDate"
+                        className="px-1 text-smart-news-gray-one text-xs"
+                      >
+                        Data final:
+                      </Label>
+                      <input
+                        id="finalDate"
+                        type="date"
+                        value={finalDate}
+                        placeholder="Data final"
+                        className="border p-2 rounded text-sm"
+                        onChange={(e) => setFinalDate(e.target.value)}
+                      />
+                    </div>
+
+                    {/* Checkbox */}
+                    <div className="mb-10">
+                      <label className="flex items-center gap-1 text-xs">
+                        <input
+                          type="checkbox"
+                          name="Emitidos"
+                          checked={emitidos}
+                          onChange={(e) => setEmitidos(e.target.checked)}
+                        />
+                        Emitidos
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-center gap-2.5 w-full">
+                    <Button
+                      type="button"
+                      onClick={handleGeneratePdf}
+                      className="bg-smart-news-purple-two hover:bg-smart-news-purple-two/80 text-smart-news-purple-one uppercase text-xs font-bold w-full h-[45px] cursor-pointer"
+                    >
+                      <FileText className="scale-90" />
+                      PDF
+                    </Button>
+                    <SheetClose asChild>
+                      <Button
+                        type="submit"
+                        className="bg-smart-news-purple-one hover:bg-smart-news-purple-one/80 text-white uppercase text-xs font-bold w-full h-[45px] cursor-pointer"
+                      >
+                        <Search className="scale-90" />
+                        Pesquisar
+                      </Button>
+                    </SheetClose>
+                  </div>
+                </form>
+              </div>
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+};
+
+export default SearchMobile;

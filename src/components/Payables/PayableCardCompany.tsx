@@ -100,7 +100,7 @@ const PayableCardCompany = ({
 
   return (
     <AlertDialog>
-      <div className="border border-smart-news-gray-three rounded-md p-4 max-w-[425px] w-full">
+      <div className="border border-smart-news-gray-three rounded-md p-4 max-w-none md:max-w-[425px] w-full">
         <div className="flex items-center justify-between gap-2">
           <h2 className="text-smart-news-gray-two font-bold">{companyName}</h2>
           <AlertDialogTrigger asChild>

@@ -217,9 +217,9 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-md">
-      <div className="centered-container p-4 flex justify-between">
+      <div className="centered-container p-4 flex justify-between flex-col md:flex-row">
         <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <div>
+          <div className="border-b border-gray-300 md:border-none">
             <AlertDialogTrigger asChild>
               <Button className="bg-white cursor-pointer text-smart-news-gray-one text-sm">
                 <Plus />
@@ -458,7 +458,7 @@ const Header = () => {
           </AlertDialogContent>
         </AlertDialog>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mt-4 md:mt-0">
           <Button className=" bg-white cursor-pointer text-smart-news-gray-one">
             <Search className="scale-125" />
           </Button>

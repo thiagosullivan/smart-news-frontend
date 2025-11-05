@@ -108,6 +108,8 @@ body {
   --color-smart-news-red-one: #ed4343;
   --color-smart-news-yellow-one: #e9b308;
   --font-inter: "Inter", sans-serif;
+
+  --breakpoint-1xl: 1350px;
 }
 
 .dark {
@@ -160,12 +162,9 @@ body {
 
   /* Checkbox */
   input[type="checkbox"] {
-    /* Add if not using autoprefixer */
     -webkit-appearance: none;
     appearance: none;
-    /* For iOS < 15 to remove gradient background */
     background-color: #fff;
-    /* Not removed via appearance */
     margin: 0;
   }
 

@@ -22,8 +22,8 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
   const totalResult = totalReceivable - totalPayable;
 
   return (
-    <div className="rounded-md overflow-hidden border border-gray-300 max-h-[500px] h-full overflow-y-scroll">
-      <table className="w-full max-w-[620px]">
+    <div className="rounded-md overflow-hidden border border-gray-300 h-full ">
+      <table className="w-full ">
         <thead>
           <tr className="bg-gray-300 text-left text-xs">
             <th className="px-4 py-3 font-medium">Nome</th>
@@ -55,7 +55,7 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
                 <td className="border-b border-gray-300 py-5 pr-1.5 max-w-[225px]">
                   {formatToBRL(companyReceivable)}
                 </td>
-                <td className="border-b border-gray-300 py-5 pr-1.5 max-w-[225px]">
+                <td className="border-b border-gray-300 py-5 pr-4 max-w-[225px]">
                   <div className="flex items-center justify-between gap-2">
                     {formatToBRL(companyResult)}
                     {companyResult < 0 ? (

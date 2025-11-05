@@ -40,7 +40,7 @@ const CardsAccounts = ({
           </h3>
           <img src={config.icon} alt={config.title} />
         </div>
-        <div className="flex items-center gap-x-3">
+        <div className="flex items-center flex-wrap gap-x-3">
           <div className="">
             <h4 className="text-[10px] uppercase text-smart-news-gray-one">
               Receber:

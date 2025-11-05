@@ -1,4 +1,5 @@
 import SearchComponent from "@/components/commons/Search";
+import SearchMobile from "@/components/commons/SearchMobile";
 import Accounts from "@/components/Home/Accounts";
 import { usePdfExport } from "@/hooks/usePdfExport";
 import type { SearchFilters } from "@/types/filters";
@@ -32,12 +33,22 @@ const HomePage = () => {
   return (
     <section className="bg-white mt-4">
       <div className="centered-container py-4">
-        <SearchComponent
-          onSearch={handleSearch}
-          onClear={handleClearFilters}
-          currentFilters={filters}
-          onGeneratePdf={handleGeneratePdf}
-        />
+        <div className="hidden lg:block">
+          <SearchComponent
+            onSearch={handleSearch}
+            onClear={handleClearFilters}
+            currentFilters={filters}
+            onGeneratePdf={handleGeneratePdf}
+          />
+        </div>
+        <div className="lg:hidden block">
+          <SearchMobile
+            onSearch={handleSearch}
+            onClear={handleClearFilters}
+            currentFilters={filters}
+            onGeneratePdf={handleGeneratePdf}
+          />
+        </div>
 
         <div ref={pdfRef}>
           <Accounts filters={filters} />

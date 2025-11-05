@@ -29,7 +29,7 @@ const CardsAmount = ({ type, amount }: CardsAmountProps) => {
   const config = cardConfig[type];
 
   return (
-    <div className="border border-smart-news-gray-three rounded-md max-w-[300px] w-full overflow-hidden">
+    <div className="border border-smart-news-gray-three rounded-md w-full max-w-[300px] overflow-hidden h-full">
       <div
         className="border-b-6 p-4 h-full min-h-[115px]"
         style={{ borderBottomColor: config.borderColor }}

@@ -78,7 +78,7 @@ const SearchComponent = ({
             <ChevronLeft className="scale-125" />
           </Button>
 
-          <div className="flex flex-col w-72">
+          <div className="flex flex-col w-60 1xl:w-72">
             <label
               htmlFor="cost"
               className="text-xs mb-2.5 text-smart-news-gray-one"
@@ -93,7 +93,7 @@ const SearchComponent = ({
           </div>
 
           {/* Data Inicial */}
-          <div className="flex flex-col gap-3 w-72">
+          <div className="flex flex-col gap-3 w-40 xl:w-60 1xl:w-72">
             <Label
               htmlFor="initialDate"
               className="px-1 text-smart-news-gray-one text-xs"
@@ -111,7 +111,7 @@ const SearchComponent = ({
           </div>
 
           {/* Data Final */}
-          <div className="flex flex-col gap-3 w-72">
+          <div className="flex flex-col gap-3 w-40 xl:w-60 1xl:w-72">
             <Label
               htmlFor="finalDate"
               className="px-1 text-smart-news-gray-one text-xs"
