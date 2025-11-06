@@ -29,7 +29,7 @@ const ReceivablesPage = () => {
       <div className="centered-container py-4">
         <div className="border border-smart-news-gray-three rounded-md p-8">
           <h1 className="text-xl font-semibold text-smart-news-gray-two mb-8">
-            Contas à Receber
+            Contas a Receber
           </h1>
           <div className="w-full">
             <div className="mb-8 max-w-[900px] w-full">
