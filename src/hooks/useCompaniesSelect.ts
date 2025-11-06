@@ -26,10 +26,10 @@ export const useCompaniesSelect = (searchTerm: string = "") => {
     queryKey: ["companies-select", searchTerm],
     queryFn: async ({ pageParam = 1 }): Promise<CompaniesSelectResponse> => {
       // TIMEOUT
-      const delay = pageParam === 1 ? 50 : 500;
-      await new Promise((resolve) => setTimeout(resolve, delay));
+      // const delay = pageParam === 1 ? 50 : 500;
+      // await new Promise((resolve) => setTimeout(resolve, delay));
 
-      console.log(`Carregando página ${pageParam} (delay: ${delay}ms)`);
+      // console.log(`Carregando página ${pageParam} (delay: ${delay}ms)`);
 
       const params = new URLSearchParams({
         page: pageParam.toString(),

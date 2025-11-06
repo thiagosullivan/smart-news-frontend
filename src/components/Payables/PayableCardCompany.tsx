@@ -69,6 +69,7 @@ const PayableCardCompany = ({
           });
         },
         onError: (error) => {
+          setIsDialogOpen(false);
           console.error("Erro ao atualizar:", error);
           toast.error("Erro ao atualizar", {
             style: {
@@ -91,6 +92,7 @@ const PayableCardCompany = ({
       },
       {
         onSuccess: () => {
+          setIsDialogOpen(false);
           console.log("Payable deletado com sucesso!");
           toast.success("Deletado com sucesso!", {
             style: {
@@ -100,8 +102,9 @@ const PayableCardCompany = ({
           });
         },
         onError: (error) => {
+          setIsDialogOpen(false);
           console.error("Erro ao deletar:", error);
-          toast.error("Erro ao deletas!", {
+          toast.error("Erro ao deletar!", {
             style: {
               backgroundColor: "#c74242",
               color: "#fff",
@@ -299,7 +302,7 @@ const PayableCardCompany = ({
 
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isPending}>Cancelar</AlertDialogCancel>
-          <AlertDialogAction
+          <Button
             className="bg-smart-news-purple-one hover:bg-smart-news-purple-one/70"
             onClick={handleSave}
             disabled={isPending}
@@ -312,7 +315,7 @@ const PayableCardCompany = ({
             ) : (
               "Salvar Alterações"
             )}
-          </AlertDialogAction>
+          </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

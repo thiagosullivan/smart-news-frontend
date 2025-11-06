@@ -40,7 +40,6 @@ const Header = () => {
 
   const isPending = isCreatingCompany || isAddingReceivable || isAddingPayable;
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [costCenter, setCostCenter] = useState("");
 
   const [formData, setFormData] = useState({
     companyId: "",
@@ -151,7 +150,7 @@ const Header = () => {
             },
             onError: (error) => {
               console.error(error.message || "Erro ao adicionar conta a pagar");
-              toast.error("Item atualizado!", {
+              toast.error("Erro ao adicionar pagável!", {
                 style: {
                   backgroundColor: "#c74242",
                   color: "#fff",
@@ -269,7 +268,7 @@ const Header = () => {
             >
               <Link to="/pagaveis">
                 <ArrowDown />
-                Contas à Pagar
+                Contas a Pagar
               </Link>
             </Button>
             <Button
@@ -278,7 +277,7 @@ const Header = () => {
             >
               <Link to="/recebiveis">
                 <ArrowUp />
-                Contas à Receber
+                Contas a Receber
               </Link>
             </Button>
             <Button
@@ -474,10 +473,10 @@ const Header = () => {
             </AlertDialogHeader>
 
             <AlertDialogFooter>
-              <AlertDialogCancel onClick={resetForm}>
+              <AlertDialogCancel onClick={resetForm} disabled={isPending}>
                 Cancelar
               </AlertDialogCancel>
-              <AlertDialogAction
+              <Button
                 className="bg-smart-news-purple-one hover:bg-smart-news-purple-one/70"
                 onClick={handleSubmit}
                 disabled={isPending}
@@ -490,7 +489,7 @@ const Header = () => {
                 ) : (
                   "Cadastrar"
                 )}
-              </AlertDialogAction>
+              </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

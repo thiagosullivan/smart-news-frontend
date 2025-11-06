@@ -72,6 +72,7 @@ const ReceivableCardCompany = ({
           });
         },
         onError: (error) => {
+          setIsDialogOpen(false);
           console.error("Erro ao atualizar:", error);
           toast.error("Erro ao atualizar!", {
             style: {
@@ -101,6 +102,7 @@ const ReceivableCardCompany = ({
           });
         },
         onError: (error) => {
+          setIsDialogOpen(false);
           console.error("Erro ao deletar:", error);
           toast.error("Erro ao deletar", {
             style: {
@@ -220,6 +222,7 @@ const ReceivableCardCompany = ({
                   variant="destructive"
                   size="sm"
                   onClick={() => setShowDeleteConfirm(true)}
+                  disabled={isUpdating || isDeleting}
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>
@@ -229,7 +232,7 @@ const ReceivableCardCompany = ({
                     variant="destructive"
                     size="sm"
                     onClick={handleDelete}
-                    disabled={isDeleting}
+                    disabled={isUpdating || isDeleting}
                   >
                     {isDeleting ? (
                       <div className="flex items-center gap-2">
@@ -243,6 +246,7 @@ const ReceivableCardCompany = ({
                   <Button
                     variant="outline"
                     size="sm"
+                    disabled={isUpdating || isDeleting}
                     onClick={() => setShowDeleteConfirm(false)}
                   >
                     Cancelar
@@ -313,7 +317,7 @@ const ReceivableCardCompany = ({
           <AlertDialogCancel disabled={isUpdating || isDeleting}>
             Cancelar
           </AlertDialogCancel>
-          <AlertDialogAction
+          <Button
             className="bg-smart-news-purple-one hover:bg-smart-news-purple-one/70"
             onClick={handleSave}
             disabled={isUpdating || isDeleting}
@@ -326,7 +330,7 @@ const ReceivableCardCompany = ({
             ) : (
               "Salvar Alterações"
             )}
-          </AlertDialogAction>
+          </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

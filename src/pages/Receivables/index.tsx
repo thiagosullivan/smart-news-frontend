@@ -11,7 +11,10 @@ const ReceivablesPage = () => {
     return (
       <section className="bg-white mt-4">
         <div className="centered-container py-4 flex items-center justify-center">
-          <Loader2 className="animte-spin" />
+          <div className="mt-10 flex flex-col gap-y-2 items-center">
+            <Loader2 className="animate-spin" />
+            <p>Carregando...</p>
+          </div>
         </div>
       </section>
     );
