@@ -8,7 +8,7 @@ import CoreProvider from "./utils/core-provider.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <CoreProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <App />
       </BrowserRouter>
     </CoreProvider>
