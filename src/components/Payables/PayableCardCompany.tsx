@@ -214,41 +214,42 @@ const PayableCardCompany = ({
         <AlertDialogHeader>
           <div className="mb-4 flex items-center justify-between">
             <AlertDialogTitle>Editar informações</AlertDialogTitle>
-
-            {!showDeleteConfirm ? (
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => setShowDeleteConfirm(true)}
-              >
-                <Trash2 className="w-4 h-4" />
-              </Button>
-            ) : (
-              <div className="flex gap-2">
+            <div>
+              {!showDeleteConfirm ? (
                 <Button
                   variant="destructive"
                   size="sm"
-                  onClick={handleDelete}
-                  disabled={isDeleting}
+                  onClick={() => setShowDeleteConfirm(true)}
                 >
-                  {isDeleting ? (
-                    <div>
-                      <Loader2 className="animate-spin" />
-                      <p>Deletando...</p>
-                    </div>
-                  ) : (
-                    "Confirmar"
-                  )}
+                  <Trash2 className="w-4 h-4" />
                 </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowDeleteConfirm(false)}
-                >
-                  Cancelar
-                </Button>
-              </div>
-            )}
+              ) : (
+                <div className="flex gap-2">
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={handleDelete}
+                    disabled={isDeleting}
+                  >
+                    {isDeleting ? (
+                      <div>
+                        <Loader2 className="animate-spin" />
+                        <p>Deletando...</p>
+                      </div>
+                    ) : (
+                      "Confirmar"
+                    )}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowDeleteConfirm(false)}
+                  >
+                    Cancelar
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
           <AlertDialogDescription>
             Empresa: <br />
@@ -308,8 +309,8 @@ const PayableCardCompany = ({
             disabled={isPending}
           >
             {isPending ? (
-              <div>
-                <Loader2 className="animate-spin" />
+              <div className="flex items-center gap-2">
+                <Loader2 className="animate-spin w-4 h-4" />
                 <p>Salvando...</p>
               </div>
             ) : (

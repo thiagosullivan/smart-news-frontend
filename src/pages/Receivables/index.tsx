@@ -26,9 +26,9 @@ const ReceivablesPage = () => {
 
   return (
     <section className="bg-white mt-4">
-      <div className="centered-container py-4">
-        <div className="border border-smart-news-gray-three rounded-md p-8">
-          <h1 className="text-xl font-semibold text-smart-news-gray-two mb-8">
+      <div className="centered-container px-2 sm:px-4 py-4">
+        <div className="border border-smart-news-gray-three rounded-md p-4 sm:p-8">
+          <h1 className="text-xl font-semibold text-smart-news-gray-two mb-4 sm:mb-8">
             Contas a Receber
           </h1>
           <div className="w-full">
