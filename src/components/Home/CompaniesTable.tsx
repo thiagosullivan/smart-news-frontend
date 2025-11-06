@@ -34,7 +34,7 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
             <th className="font-medium">Resultado</th>
           </tr>
         </thead>
-        <tbody className="h-[500px]">
+        <tbody className="h-[415px]">
           {companies.map((company) => {
             const companyReceivable = company.accountsReceivable.reduce(
               (sum, ar) => sum + ar.amount,

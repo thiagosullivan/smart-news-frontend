@@ -179,7 +179,7 @@ const PayableCardCompany = ({
           <div className="flex items-end justify-between">
             <div>
               <p className="font-semibold text-smart-news-gray-two text-sm">
-                Valor à pagar:
+                Valor a pagar:
               </p>
               <p className="text-base font-bold text-smart-news-gray-two">
                 {formatToBRL(payable.amount)}
