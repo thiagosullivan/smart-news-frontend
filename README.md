@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# Atividade Prática - Smart New System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sou o Thiago Santos e esse é meu projeto para o teste prático.
 
-Currently, two official plugins are available:
+✉️: thiago.sullivan.dev@gmail.com <br>
+🔗: https://thiagosullivanportfolio.vercel.app/ <br>
+ℹ️: https://www.linkedin.com/in/thiagosullivan/
+____
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Link para acesso ao live project:
+https://thiagosullivan.github.io/smart-news-frontend/
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Preview
+#### Home
+![Home Page](https://i.ibb.co/C5hcGdvX/Captura-de-tela-2025-11-05-235354.png "Home Page")
 
-## Expanding the ESLint configuration
+#### Contas a pagar
+![Contas a pagar](https://i.ibb.co/BHYQ8L0b/Captura-de-tela-2025-11-05-235948.png "Contas a Pagar page")
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+#### Modais
+![Modais](https://i.ibb.co/n8PkvrDy/modais.jpg "Modais")
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+#### Mobile
+![Mobile](https://i.ibb.co/9k6sQf9M/mobile.jpg "Mobile")
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Frontend
+O projeto foi criado no Vite com TypeScript. Os componentes de select utilizam infinite scroll, onde os dados são buscados do backend utilizando paginação para carregamento parcial até finalizar a lista. O botão de PDF captura o estado atual da página inicial e gera um arquivo PDF com as informações filtradas pelo formulário de pesquisa e indicando quais informações foram buscadas no momento do registro. O botão à esquerda do formulário serve para limpar os filtros de busca.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Ao clicar no botão de cadastro, um popup é aberto permitindo cadastrar uma nova empresa ou selecionar uma empresa existente para lançar uma conta a pagar ou a receber no sistema.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+O projeto possui duas páginas específicas: Contas a Pagar e Contas a Receber. Cada página filtra os cards exibidos conforme o tipo de conta. Ambas incluem um componente de select com infinite scroll (que acontecerá se os dados ainda não tiverem sido carregados na homepage') e oferecem funcionalidades de edição - permitindo alterar o status das contas entre Pendente, Pago e Vencido - além da opção de excluir contas. O projeto é totalmente responsivo.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Bibliotecas usadas no frontend:
+- Vite: Escolhido por não exigir SSR e SEO neste projeto
+- Tailwind CSS: Framework moderno para agilidade no desenvolvimento e estilização
+- Shadcn: Utilizado para componentes complexos como sidebar, tooltips, formulários e popups
+- React Query (TanStack Query): Gerencia estados eficientemente, melhora performance e atualiza componentes automaticamente
+- Rechart: Biblioteca para renderização de gráficos na homepage
+- Sonner: Responsável pelos toasters de feedback após envio de formulários
+- Lucide React Icons: Fornece todos os ícones utilizados no projeto
+- Html2Canvas-pro e JsPDF: Capturam a tela e convertem para PDF
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Backend
+Desenvolvido em Node.js com Fastify para receber e enviar informações do projeto. Utiliza configuração personalizada de CORS permitindo requisições apenas de URLs pré-determinadas. O ORM escolhido foi Prisma com PostgreSQL, utilizando Supabase como banco de dados. O backend está hospedado no Railway e disponível em: https://smart-news-backend-production-a4be.up.railway.app/
