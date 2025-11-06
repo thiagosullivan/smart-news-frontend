@@ -290,16 +290,16 @@ const Header = () => {
               </Link>
             </Button>
           </div>
-          <AlertDialogContent className="max-w-2xl">
+          <AlertDialogContent className="p-4 sm:p-6 max-w-2xl">
             <AlertDialogHeader className="relative">
-              <div className="mb-4 flex items-center justify-between">
+              <div className="mb-1 sm:mb-4 flex items-center justify-between">
                 <AlertDialogTitle>Cadastrar novas informações</AlertDialogTitle>
               </div>
               <AlertDialogDescription asChild>
                 <div className="space-y-4">
                   {/* Seleção/Criação de Empresa */}
-                  <div className="border-b border-gray-300 pb-4">
-                    <h3 className="font-semibold mb-3 text-gray-900">
+                  <div className="border-b border-gray-300 pb-2.5 sm:pb-4 mb-2.5 sm:mb-4">
+                    <h3 className="font-semibold text-base sm:text-sm text-left sm:text-center mb-1.5 sm:mb-3 text-gray-900">
                       Empresa
                     </h3>
                     <Tabs
@@ -334,7 +334,7 @@ const Header = () => {
                           onChange={(e) =>
                             handleInputChange("companyName", e.target.value)
                           }
-                          className="border border-gray-300 rounded-md h-10 w-full px-3"
+                          className="border border-gray-300 rounded-md h-8 sm:h-10 w-full px-3"
                           placeholder="Digite o nome da nova empresa"
                           disabled={isPending}
                         />
@@ -343,8 +343,8 @@ const Header = () => {
                   </div>
 
                   {/* Tipo de Conta */}
-                  <div className="border-b border-gray-300 pb-4">
-                    <h3 className="font-semibold mb-3 text-gray-900">
+                  <div className="border-b border-gray-300 pb-2.5 sm:pb-4 mb-2.5 sm:mb-4">
+                    <h3 className="font-semibold text-base sm:text-sm text-left sm:text-center mb-1.5 sm:mb-3 text-gray-900">
                       Tipo de Conta
                     </h3>
                     <Tabs
@@ -364,8 +364,8 @@ const Header = () => {
                   </div>
 
                   {/* Dados da Conta */}
-                  <div className="border-b border-gray-300 pb-4">
-                    <h3 className="font-semibold mb-3 text-gray-900">
+                  <div className="border-b border-gray-300 pb-2.5 sm:pb-4 mb-2.5 sm:mb-4">
+                    <h3 className="font-semibold text-base sm:text-sm text-left sm:text-center mb-1.5 sm:mb-3 text-gray-900">
                       Dados da{" "}
                       {formData.accountType === "receive"
                         ? "Conta a Receber"
@@ -373,7 +373,7 @@ const Header = () => {
                     </h3>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-700">
+                        <label className="block text-left sm:text-center text-sm font-medium mb-1 text-gray-700">
                           Valor (R$)
                         </label>
                         <CurrencyInput
@@ -382,7 +382,7 @@ const Header = () => {
                           onValueChange={(value) =>
                             handleInputChange("amount", value || "")
                           }
-                          className="border border-gray-300 rounded-md h-9 w-full px-2"
+                          className="border border-gray-300 rounded-md h-8 sm:h-10 w-full px-2"
                           placeholder="0,00"
                           decimalsLimit={2}
                           decimalScale={2}
@@ -392,7 +392,7 @@ const Header = () => {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-700">
+                        <label className="block text-left sm:text-center font-medium mb-1 text-gray-700">
                           Status
                         </label>
                         <select
@@ -400,7 +400,7 @@ const Header = () => {
                           onChange={(e) =>
                             handleInputChange("status", e.target.value)
                           }
-                          className="border border-gray-300 rounded-md h-9 w-full px-2"
+                          className="border border-gray-300 rounded-md h-8 sm:h-10 w-full px-2"
                         >
                           <option value="PENDING">Pendente</option>
                           <option value="PAID">
@@ -412,7 +412,7 @@ const Header = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-700">
+                        <label className="block text-left sm:text-center font-medium mb-1 text-gray-700">
                           Data de Vencimento
                         </label>
                         <input
@@ -421,11 +421,11 @@ const Header = () => {
                           onChange={(e) =>
                             handleInputChange("dueDate", e.target.value)
                           }
-                          className="border border-gray-300 rounded-md h-9 w-full px-2"
+                          className="border border-gray-300 rounded-md h-8 sm:h-10 w-full px-2"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-700">
+                        <label className="block text-left sm:text-center font-medium mb-1 text-gray-700">
                           Data de{" "}
                           {formData.accountType === "receive"
                             ? "Recebimento"
@@ -438,7 +438,7 @@ const Header = () => {
                             handleInputChange("paymentDate", e.target.value)
                           }
                           disabled={formData.status !== "PAID"}
-                          className="border border-gray-300 rounded-md h-9 w-full px-2 disabled:bg-gray-100"
+                          className="border border-gray-300 rounded-md h-8 sm:h-10 w-full px-2 disabled:bg-gray-100"
                         />
                         {formData.status !== "PAID" && (
                           <p className="text-xs text-gray-500 mt-1">
@@ -454,8 +454,8 @@ const Header = () => {
                   </div>
 
                   {/* Descrição da Conta */}
-                  <div>
-                    <label className="block text-sm font-medium mb-1 text-gray-700">
+                  <div className="">
+                    <label className="block text-left sm:text-center font-medium mb-1 text-gray-700">
                       Descrição da Conta
                     </label>
                     <input
@@ -464,7 +464,7 @@ const Header = () => {
                       onChange={(e) =>
                         handleInputChange("description", e.target.value)
                       }
-                      className="border border-gray-300 rounded-md h-10 w-full px-3"
+                      className="border border-gray-300 rounded-md h-8 sm:h-10 w-full px-3"
                       placeholder="Descreva a conta..."
                     />
                   </div>

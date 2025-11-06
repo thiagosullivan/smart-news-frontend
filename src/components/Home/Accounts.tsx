@@ -45,7 +45,7 @@ const Accounts = ({ filters }: AccountsProps) => {
 
   return (
     <section className="my-4">
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1.5 w-full">
+      <div className="grid grid-cols-1 2sm:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-1.5 w-full">
         <CardsAmount type="receivable" amount={totalSummary.totalReceivable} />
         <CardsAmount type="payable" amount={totalSummary.totalPayable} />
         <CardsAmount type="balance" amount={totalSummary.balance} />

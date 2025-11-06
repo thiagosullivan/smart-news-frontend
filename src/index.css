@@ -110,6 +110,8 @@ body {
   --font-inter: "Inter", sans-serif;
 
   --breakpoint-1xl: 1350px;
+  --breakpoint-1sm: 535px;
+  --breakpoint-2sm: 410px;
 }
 
 .dark {

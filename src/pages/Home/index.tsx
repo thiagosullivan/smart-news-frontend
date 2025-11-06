@@ -32,7 +32,7 @@ const HomePage = () => {
 
   return (
     <section className="bg-white mt-4">
-      <div className="centered-container py-4">
+      <div className="centered-container sm:p-4! p-2 py-4!">
         <div className="hidden lg:block">
           <SearchComponent
             onSearch={handleSearch}

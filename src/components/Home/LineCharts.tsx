@@ -179,7 +179,7 @@ const FinancialLineChart = ({
   }
 
   return (
-    <div className="w-full border rounded-lg p-4">
+    <div className="w-full border rounded-lg p-2 1sm:p-4">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-xs font-semibold text-smart-news-gray-one uppercase">
           Resultados por períodos

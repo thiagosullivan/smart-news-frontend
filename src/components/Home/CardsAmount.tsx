@@ -32,13 +32,13 @@ const CardsAmount = ({ type, amount }: CardsAmountProps) => {
   const config = cardConfig[type];
 
   return (
-    <div className="border border-smart-news-gray-three rounded-md w-full max-w-[300px] overflow-hidden h-full">
+    <div className="border border-smart-news-gray-three rounded-md w-full max-w-none 2sm:max-w-[250px] 1sm:max-w-[300px] overflow-hidden h-full">
       <div
         className="border-b-6 p-4 h-full min-h-[115px]"
         style={{ borderBottomColor: config.borderColor }}
       >
         <div className="flex items-center justify-between mb-4">
-          <h3 className="uppercase text-sm font-bold text-smart-news-gray-two">
+          <h3 className="uppercase text-sm font-bold text-smart-news-gray-two mr-2">
             {config.title}
           </h3>
           <img src={config.icon} alt={config.title} />

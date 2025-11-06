@@ -115,10 +115,11 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
   return (
     <div ref={selectRef} className="relative w-full">
       <div
-        className="border border-smart-news-gray-three rounded-md h-9 px-2.5 flex items-center cursor-pointer bg-white"
+        className="border border-smart-news-gray-three rounded-md h-8 sm:h-10 px-3 flex items-center cursor-pointer bg-white"
         onClick={handleInputClick}
       >
         <input
+          id="companies"
           type="text"
           className="w-full outline-none bg-transparent cursor-pointer"
           value={displayValue}

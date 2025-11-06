@@ -47,23 +47,26 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
             const companyResult = companyReceivable - companyPayable;
 
             return (
-              <tr key={company.id} className="text-xs uppercase">
-                <td className="border-b border-gray-300 py-5 pl-4 pr-1.5 max-w-[225px]">
+              <tr
+                key={company.id}
+                className="text-[10px] 2sm:text-xs uppercase"
+              >
+                <td className="border-b border-gray-300 sm:py-5 sm:pl-4 sm:pr-1.5 max-w-[225px] p-1">
                   {company.name}
                 </td>
-                <td className="border-b border-gray-300 py-5 pr-1.5 max-w-[225px]">
+                <td className="border-b border-gray-300 sm:py-5 sm:pr-1.5 max-w-[225px] p-1">
                   {formatToBRL(companyPayable)}
                 </td>
-                <td className="border-b border-gray-300 py-5 pr-1.5 max-w-[225px]">
+                <td className="border-b border-gray-300 sm:py-5 sm:pr-1.5 max-w-[225px] p-1">
                   {formatToBRL(companyReceivable)}
                 </td>
-                <td className="border-b border-gray-300 py-5 pr-4 max-w-[225px]">
-                  <div className="flex items-center justify-between gap-2">
+                <td className="border-b border-gray-300 sm:py-5 sm:pr-4 max-w-[225px] p-1">
+                  <div className="flex items-center justify-between sm:gap-2 gap-1 flex-col sm:flex-row">
                     {formatToBRL(companyResult)}
                     {companyResult < 0 ? (
-                      <img src={resultDown} className="ml-2.5" />
+                      <img src={resultDown} className="sm:ml-2.5" />
                     ) : (
-                      <img src={resultUp} className="ml-2.5" />
+                      <img src={resultUp} className="sm:ml-2.5" />
                     )}
                   </div>
                 </td>
