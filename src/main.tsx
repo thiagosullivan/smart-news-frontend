@@ -8,7 +8,7 @@ import CoreProvider from "./utils/core-provider.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <CoreProvider>
-      <BrowserRouter basename="/smart-news-frontend">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </CoreProvider>
