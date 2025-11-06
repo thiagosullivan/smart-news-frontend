@@ -1,4 +1,5 @@
 import { formatToBRL } from "@/utils/formatToBRL";
+import cardDate from "@/assets/icon-card-date.png";
 
 type CardType = "upcomingAccounts" | "overdueAccounts";
 
@@ -11,12 +12,12 @@ interface CardsAccountsProps {
 const cardConfig = {
   overdueAccounts: {
     title: "Contas Vencidas:",
-    icon: "/src/assets/icon-card-date.png",
+    icon: cardDate,
     borderColor: "#0da6e6",
   },
   upcomingAccounts: {
     title: "Contas A Vencer:",
-    icon: "/src/assets/icon-card-date.png",
+    icon: cardDate,
     borderColor: "#0da6e6",
   },
 };

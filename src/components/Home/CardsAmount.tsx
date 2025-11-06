@@ -1,4 +1,7 @@
 import { formatToBRL } from "@/utils/formatToBRL";
+import receivable from "@/assets/icon-card-receivable.png";
+import payable from "@/assets/icon-card-payable.png";
+import balance from "@/assets/icon-card-balance.png";
 
 type CardType = "receivable" | "payable" | "balance";
 
@@ -10,17 +13,17 @@ interface CardsAmountProps {
 const cardConfig = {
   receivable: {
     title: "Total Receita",
-    icon: "/src/assets/icon-card-receivable.png",
+    icon: receivable,
     borderColor: "#23c560",
   },
   payable: {
     title: "Total Despesas",
-    icon: "/src/assets/icon-card-payable.png",
+    icon: payable,
     borderColor: "#ed4343",
   },
   balance: {
     title: "Lucro Líquido",
-    icon: "/src/assets/icon-card-balance.png",
+    icon: balance,
     borderColor: "#e9b308",
   },
 };

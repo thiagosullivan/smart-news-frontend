@@ -1,6 +1,8 @@
 import React from "react";
 import { formatToBRL } from "@/utils/formatToBRL";
 import type { Company } from "@/types/company";
+import resultDown from "@/assets/icon-result-down.png";
+import resultUp from "@/assets/icon-result-up.png";
 
 interface CompaniesTableProps {
   companies: Company[];
@@ -59,15 +61,9 @@ const CompaniesTable: React.FC<CompaniesTableProps> = ({ companies }) => {
                   <div className="flex items-center justify-between gap-2">
                     {formatToBRL(companyResult)}
                     {companyResult < 0 ? (
-                      <img
-                        src="/src/assets/icon-result-down.png"
-                        className="ml-2.5"
-                      />
+                      <img src={resultDown} className="ml-2.5" />
                     ) : (
-                      <img
-                        src="/src/assets/icon-result-up.png"
-                        className="ml-2.5"
-                      />
+                      <img src={resultUp} className="ml-2.5" />
                     )}
                   </div>
                 </td>
