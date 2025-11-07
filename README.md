@@ -23,7 +23,7 @@ https://thiagosullivan.github.io/smart-news-frontend/
 ![Modais](https://i.ibb.co/pvcMNngm/modais.jpg "Modais")
 
 #### 📱 Mobile
-![Mobile](https://i.ibb.co/RTBGsr8s/mobile.jpg "Mobile")
+![Mobile](https://i.ibb.co/dwJwsvQ1/mobile.jpg "Mobile")
 
 ## 🎯 Frontend
 O projeto foi criado no Vite com TypeScript. Os componentes de select utilizam infinite scroll, onde os dados são buscados do backend utilizando paginação para carregamento parcial até finalizar a lista. O botão de PDF captura o estado atual da página inicial e gera um arquivo PDF com as informações filtradas pelo formulário de pesquisa e indicando quais informações foram buscadas no momento do registro. O botão à esquerda do formulário serve para limpar os filtros de busca.
